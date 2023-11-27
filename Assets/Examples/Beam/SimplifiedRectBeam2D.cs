@@ -84,8 +84,8 @@ public class SimplifiedRectBeam2D : MonoBehaviour
         float eil2 = 2f * E * I / L;
         float eil4 = 4f * E * I / L;
 
-        stressConvertion = Matrix<float>.Build.DenseOfDiagonalArray(new float[3] {
-         1f / A , 1f / A , height /( 2f * I ),
+        stressConvertion = Matrix<float>.Build.DenseOfDiagonalArray(new float[6] {
+         1f / A , 1f / A , height /( 2f * I ),   1f / A , 1f / A , height /( 2f * I )
         });
 
         k = Matrix<float>.Build.DenseOfArray(new float[6, 6]
@@ -114,21 +114,14 @@ public class SimplifiedRectBeam2D : MonoBehaviour
 
         var nodalForces = k * nodalDisplacement;
      
-        //var nodalStresses = stressConvertion *  nodalForces;
+        var nodalStresses = stressConvertion *  nodalForces;
 
 
 
         lineHandler.UpdatePlacements();
-        //lineHandler.SetNodalStresses(nodalStresses.ToArray(), maxBeamStress);
+        lineHandler.SetNodalStresses(nodalStresses.ToArray(), maxBeamStress);
 
 #if FEM_DEBUG
-
-        Debug.DrawLine((Vector2)el1.transform.position, (Vector2)el1.transform.position + new Vector2(nodalDisplacement[0, 0], nodalDisplacement[1, 0]), Color.yellow);
-        Debug.DrawLine((Vector2)el1.transform.position, (Vector2)el1.transform.position + (Vector2)(Quaternion.AngleAxis(nodalDisplacement[2,0], Vector3.forward) * el1.transform.right), Color.red);
-        Debug.Log(nodalDisplacement[0, 0] + " " + nodalDisplacement[1, 0] + " " + nodalDisplacement[2, 0]);
-
-
-
         Debug.DrawLine(el1.transform.position, (Vector2)el1.transform.position + new Vector2(nodalForces[0, 0], nodalForces[1, 0]), Color.red);
         Debug.DrawLine(el1.transform.position, el1.transform.position + Vector3.forward * nodalForces[2, 0], Color.blue);
         Debug.DrawLine(el2.transform.position, (Vector2)el2.transform.position + new Vector2(nodalForces[3, 0], nodalForces[4, 0]), Color.red);
