@@ -173,8 +173,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   el1: {fileID: 655724731}
   el2: {fileID: 2085024299}
-  ratio: 1
-  height: 0.57
+  maxBeamStress: 651
+  ratio: 100
+  height: 1.8
 --- !u!114 &448809171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,9 +188,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a92c9f197c8cc694482b47e40c26cd01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  el1: {fileID: 655724731}
-  el2: {fileID: 2085024299}
   lineRenderer: {fileID: 1955692053}
+  numOfPositions: 100
+  influenceMagnitude: 2
 --- !u!1 &655724727
 GameObject:
   m_ObjectHideFlags: 0
