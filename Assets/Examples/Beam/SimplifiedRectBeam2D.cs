@@ -93,7 +93,7 @@ public class SimplifiedRectBeam2D : MonoBehaviour
             { ael, 0f, 0f, -ael, 0f, 0f },
             { 0f, eil12, eil6 , 0f, -eil12, eil6 },
             { 0f, eil6, eil4 , 0f, -eil6, eil2 },
-            { -ael, 0f, 0f, -ael, 0f, 0f },
+            { -ael, 0f, 0f, ael, 0f, 0f },
             { 0f, -eil12, -eil6 , 0f, eil12, -eil6 },
             { 0f, eil6, eil2 , 0f, -eil6, eil4 },
         });
